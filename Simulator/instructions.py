@@ -12,21 +12,23 @@ from Hardware.Memory import Memory
 from Hardware.Registers import Registers
 
 
-def lw(rs, rt, add):
-    dw = Memory.get_dw(rs + add)
+def lw(rt,add,rs):
+    dw = Memory.get_dw(Registers.reg_get(rs) + add)
     Registers.reg_set(rt, dw)
 
 
-def sw(rs, rt, add):
+def sw(rs, add, rt):
     dw = Registers.reg_get(rs)
-    Memory.set_dw(rt + add, dw)
+    Memory.set_dw(Registers.reg_get(rt) + add, dw)
 
 
-def add(rs, rd, rt):
+def add(rt, rs, rd):
     res = Registers.reg_get(rd) + Registers.reg_get(rs)
     Registers.reg_set(rt, res)
 
 
-def sub(rs, rd, rt):
+def sub(rt, rs, rd):
     res = Registers.reg_get(rd) - Registers.reg_get(rs)
     Registers.reg_set(rt, res)
+
+# TODO: many more instructions

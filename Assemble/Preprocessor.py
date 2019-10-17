@@ -16,7 +16,7 @@ class Preprocessor:
         raise SyntaxError("Preprocessor can not instance, please use static method")
 
     @staticmethod
-    def preprocess(mips_code, return_label=True):
+    def prep(mips_code, return_label=True):
 
         mips_code = re.sub("#.+?\n", "\n", mips_code)  # remove annotation
         mips_code = re.sub("\n+", "\n", mips_code)  # remove empty line
@@ -47,3 +47,33 @@ class Preprocessor:
             return inst_list, label
         else:
             return inst_list
+
+    @staticmethod
+    def prep_line(mips_line):
+        if ":" not in mips_line:
+            return list(
+                filter(
+                    lambda x: x != "",
+                    mips_line.replace(",", " ")
+                    .replace("(", " ")
+                    .replace(")", "")
+                    .split(" "),
+                )
+            ),None
+        else:
+            this_line = mips_line.split(":")
+            if len(this_line) > 1:
+                return (
+                    list(
+                        filter(
+                            lambda x: x != "",
+                            this_line[1].replace(",", " ")
+                            .replace("(", " ")
+                            .replace(")", "")
+                            .split(" "),
+                        )
+                    ),
+                    this_line[0],
+                )
+            else:
+                return None, this_line[0]

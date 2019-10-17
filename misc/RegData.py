@@ -44,7 +44,7 @@ class RegData:
         elif isinstance(other_data, str):
             return RegData(self.value_base() + RegData(other_data).value_base())
         elif isinstance(other_data, RegData):
-            return RegData(self.value_base() + other_data.value)
+            return RegData(self.value_base() + other_data.value_base())
         else:
             raise ValueError(
                 "Unable to handle data:{} in type {}".format(
