@@ -1,6 +1,6 @@
 # python3
 # -*- coding: utf-8 -*-
-# @File    : Assembler.py
+# @File    : Assemble.py
 # @Desc    :
 # @Project : MIPSAssembler
 # @Time    : 10/16/19 8:14 PM
@@ -8,15 +8,22 @@
 # @Contact : peter@mail.loopy.tech
 # @License : CC BY-NC-SA 4.0 (subject to project license)
 
-from tools.RegData import RegData
-from tools import static
+from misc.RegData import RegData
+from misc import static
 
 
 class Assembler:
+    def __init__(self):
+        raise SyntaxError("Assembler can not instance, please use static method")
     @staticmethod
-    def decode(instrcutions):
+    def encode(instrcutions):
+        """
+
+        :param instrcutions: list
+        :return:
+        """
         machine_code = RegData(None)
-        for inst in instrcutions.split("\n"):
+        for inst in instrcutions:
             inst = list(
                 filter(
                     lambda x: x != "",
@@ -27,19 +34,19 @@ class Assembler:
                 )
             )
             if inst[0] in static.R_inst_to_index.keys():
-                machine_code = machine_code.concat(Assembler.r_decode(inst))
+                machine_code = machine_code.concat(Assembler.r_encode(inst))
             elif inst[0] in static.I_inst_to_index.keys():
-                machine_code = machine_code.concat(Assembler.i_decode(inst))
+                machine_code = machine_code.concat(Assembler.i_encode(inst))
             elif inst[0] in static.J_inst_to_index.keys():
-                machine_code = machine_code.concat(Assembler.j_decode(inst))
+                machine_code = machine_code.concat(Assembler.j_encode(inst))
             else:
                 raise ValueError("Unknown mips instruction:{}".format(inst[0]))
         return machine_code
 
     @staticmethod
-    def r_decode(instruction_list):
+    def r_encode(instruction_list):
         """
-        R-type instruction decoder
+        R-type instruction encoder
         :param instruction_list: one inst
         :return: RegData
         """
@@ -65,13 +72,13 @@ class Assembler:
                 return RegData.concat_list([op, rs, rt, rd, shamt, funct])
         except Exception as e:
             raise ValueError(
-                'Unable to decode r_instruction:"{}",{}'.format(instruction_list, e)
+                'Unable to encode r_instruction:"{}",{}'.format(instruction_list, e)
             )
 
     @staticmethod
-    def i_decode(instruction_list):
+    def i_encode(instruction_list):
         """
-        R-type instruction decoder
+        R-type instruction encoder
         :param instruction_list: one inst
         :return: RegData
         """
@@ -94,13 +101,13 @@ class Assembler:
                 return RegData.concat_list([op, rs, rt, add])
         except Exception as e:
             raise ValueError(
-                'Unable to decode i_instruction:"{}",{}'.format(instruction_list, e)
+                'Unable to encode i_instruction:"{}",{}'.format(instruction_list, e)
             )
 
     @staticmethod
-    def j_decode(instruction_list):
+    def j_encode(instruction_list):
         """
-        R-type instruction decoder
+        R-type instruction encoder
         :param instruction_list: one inst
         :return: RegData
         """
@@ -112,10 +119,10 @@ class Assembler:
 
         except Exception as e:
             raise ValueError(
-                'Unable to decode j_instruction:"{}",{}'.format(instruction_list, e)
+                'Unable to encode j_instruction:"{}",{}'.format(instruction_list, e)
             )
 
 
 if __name__ == "__main__":
     inst = "j 10000\nadd $s0,$a1,$t7\nsw $s1,10($s2)"
-    print(Assembler.decode(inst).bin, Assembler.decode(inst).value_base(16))
+    print(Assembler.encode(inst).bin, Assembler.encode(inst).value_base(16))

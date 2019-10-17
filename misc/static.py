@@ -8,7 +8,7 @@
 # @Contact : peter@mail.loopy.tech
 # @License : CC BY-NC-SA 4.0 (subject to project license)
 
-from tools.RegData import RegData
+from misc.RegData import RegData
 
 
 def reverse_dict(d):
