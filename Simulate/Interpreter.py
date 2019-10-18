@@ -8,7 +8,7 @@
 # @Contact : peter@mail.loopy.tech
 # @License : CC BY-NC-SA 4.0 (subject to project license)
 
-from Simulator.instructions import *
+from Simulate.instructions import *
 from Assemble.Preprocessor import Preprocessor
 from Assemble.Assembler import Assembler
 from misc.RegData import RegData
@@ -30,18 +30,18 @@ class Interpreter:
         "slti": slti_,
         "srl": srl_,
     }
-    __label = {}
-    __hist_inst = []
-    __curr_inst = 0
+    label = {}
+    hist_inst = []
+    curr_inst = 0
 
     def __init__(self):
         raise SyntaxError("Interpreter can not be instantiate. Please use static method.")
 
     @classmethod
     def clear(cls):
-        cls.__label = {}
-        cls.__hist_inst = []
-        cls.__curr_inst = 0
+        cls.label = {}
+        cls.hist_inst = []
+        cls.curr_inst = 0
         Memory.clear()
         Registers.clear()
 
@@ -58,25 +58,25 @@ class Interpreter:
             res = cls.Inst[code_list[0]](*code_list[1:])
             if res is not None:
                 cls.jump_label(res)
-            cls.__hist_inst.append(code_list)
-            cls.__curr_inst += 1
+            cls.hist_inst.append(code_list)
+            cls.curr_inst += 1
         else:
             raise ValueError("God knows what happened")
 
     @classmethod
     def add_label(cls, label):
-        cls.__label[label] = len(cls.__hist_inst)
+        cls.label[label] = len(cls.hist_inst)
 
     @classmethod
     def jump_label(cls, label):
-        if label in cls.__label.keys():
-            cls.__curr_inst = cls.__hist_inst[cls.__label[label]]
+        if label in cls.label.keys():
+            cls.curr_inst = cls.hist_inst[cls.label[label]]
             count = 0
-            while cls.__curr_inst < len(cls.__hist_inst):
+            while cls.curr_inst < len(cls.hist_inst):
                 if count > 10000:
                     raise RecursionError("Infinity Loop with label:{}".format(label))
-                cls.run_line(cls.__hist_inst[cls.__curr_inst])
-                cls.__hist_inst += 1
+                cls.run_line(cls.hist_inst[cls.curr_inst])
+                cls.hist_inst += 1
                 count += 1
         else:
             raise ValueError("Trying to jump to an unknown label:{}".format(label))

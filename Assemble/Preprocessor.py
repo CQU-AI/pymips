@@ -22,6 +22,7 @@ class Preprocessor:
         mips_code = re.sub("\n+", "\n", mips_code)  # remove empty line
         mips_code = re.sub(" +", " ", mips_code)  # remove redundant space
         mips_code = re.sub("\n | \n", "\n", mips_code)  # remove space at line_start_end
+        mips_code = re.sub("\$zero", "$0", mips_code)  # remove space at line_start_end
 
         inst_list = mips_code.split("\n")
 
@@ -55,11 +56,11 @@ class Preprocessor:
                 filter(
                     lambda x: x != "",
                     mips_line.replace(",", " ")
-                    .replace("(", " ")
-                    .replace(")", "")
-                    .split(" "),
+                        .replace("(", " ")
+                        .replace(")", "")
+                        .split(" "),
                 )
-            ),None
+            ), None
         else:
             this_line = mips_line.split(":")
             if len(this_line) > 1:
@@ -68,12 +69,17 @@ class Preprocessor:
                         filter(
                             lambda x: x != "",
                             this_line[1].replace(",", " ")
-                            .replace("(", " ")
-                            .replace(")", "")
-                            .split(" "),
+                                .replace("(", " ")
+                                .replace(")", "")
+                                .split(" "),
                         )
                     ),
                     this_line[0],
                 )
             else:
                 return None, this_line[0]
+
+
+if __name__ == '__main__':
+    with open("../drings.txt", "r") as f:
+        print(Preprocessor.prep(f.read()))

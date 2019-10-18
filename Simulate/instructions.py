@@ -29,7 +29,7 @@ def add_(rd, rs, rt):
 
 
 def addi_(rt, rs, imme):
-    res = Registers.reg_get(rs) + imme
+    res = Registers.reg_get(rs) + int(imme)
     Registers.reg_set(rt, res)
 
 
@@ -57,7 +57,7 @@ def sub_(rd, rs, rt):
 
 
 def sll_(rt, rs, imme):
-    res = Registers.reg_get(rs) << imme
+    res = Registers.reg_get(rs) << int(imme)
     Registers.reg_set(rt, res)
 
 
@@ -66,10 +66,10 @@ def slt_(rd, rs, rt):
 
 
 def slti_(rt, rs, imme):
-    Registers.reg_set(rt, RegData(Registers.reg_get(rs) < imme))
+    Registers.reg_set(rt, RegData(Registers.reg_get(rs) < int(imme)))
 
 
 def srl_(rt, rs, imme):
-    res = Registers.reg_get(rs) >> imme
+    res = Registers.reg_get(rs) >> int(imme)
     Registers.reg_set(rt, res)
 # TODO: many more instructions
