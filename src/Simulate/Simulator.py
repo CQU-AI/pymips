@@ -1,5 +1,7 @@
 from Assemble.Preprocessor import Preprocessor
 from Simulate.Interpreter import Interpreter
+from Hardware.Memory import Memory
+from Hardware.Registers import Registers
 
 
 class Simulator(Interpreter):
@@ -11,9 +13,13 @@ class Simulator(Interpreter):
         with open(path, "r") as f:
             insts = f.read()
         cls.hist_inst, cls.label = Preprocessor.prep(insts, return_label=True)
-        while cls.curr_inst <= len(cls.hist_inst):
-            cls.run_line(cls.hist_inst[cls.curr_inst])
+        while cls.curr_inst < len(cls.hist_inst):
+            cls.run_line(cls.hist_inst[cls.curr_inst], False)
+
+    # TODO: add shell
 
 
 if __name__ == "__main__":
     Simulator.run_file("../drings.txt")
+    Registers.print("s")
+    Registers.print("t")

@@ -18,9 +18,11 @@ This project mainly contains two seperate part : `Assembler` and `Simulator`
  - `class Interpreter` : Parse and run mips instructions.
  - `class Simulator` : Run the mips instructions. Coming soon.
  - Depends on `class RegData`,`class Memory`,`class Registers`,`misc.static`.
+ - Supported mips instructions:`lw`, `sw`, `add`, `addi`, `and`, `beq`, `j`, `or`, `sub`, `sll`, `slt`, `slti`, `srl`
  
 ### Dependency
  - `class RegData` : **[Key of this project]** Deals with all kinds of numbers and number_length stuffs.
  - `class Memory` : Simulates sparse memory (singleton mode).
  - `class Registers` : Simulates registers (singleton mode).
  - `misc.static` : Stores the static dictionaries.
+

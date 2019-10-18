@@ -9,8 +9,65 @@ In other words, MIPS-simulator actually interprets mips instructions.
 
 ## Note
 
-- This project is in its early stage, which means some functions may not work properly.
+- This project is in its early stage, which means some functions may not supported yet.
 
+## Usage
+### Assemble
+#### Assemble
+```python
+from Assemble.Assembler import Assembler
+
+instructions = "j 10000\nadd $s0,$a1,$t7\nsw $s1,10($s2)"
+machine_code = Assembler.encode(instructions)
+print(machine_code.bin)
+print(machine_code.value_base(16))
+```
+#### DisAssemble
+```python
+from Assemble.DisAssembler import DisAssembler
+from misc.RegData import RegData
+
+machine_code = RegData("0x8002710af820ae51000a")
+instructions = DisAssembler.decode(machine_code)
+print(instructions)
+```
+### Simulate
+#### RUN!
+ - Run mips instruction in line:
+    ```python
+   from Simulate.Simulator import Simulator
+   
+   Simulator.run_line("addi $s0, $s1, 10")
+    ```
+ - Run asm file:
+    ```python
+   from Simulate.Simulator import Simulator
+   
+   Simulator.run_file("../test/drings.asm")
+    ```
+#### Debug
+ - Set the register data
+    ```python
+   from Hardware.Registers import Registers
+   from misc.RegData import RegData
+   
+   Registers.reg_set("$s0",RegData(100))
+   ```
+ - Get the register data
+    ```python
+   from Hardware.Registers import Registers
+    
+   res = Registers.reg_get("$s0")
+   
+   # print all the "s" registers
+   Registers.print("s")
+   
+   # print all registers
+   Registers.print()
+    ```
+### Example
+ - [Sample1.py](./test/sample1.py)
+ 
 ## Contributing
 
 Read [CONTRIBUTING](CONTRIBUTING.md) for more information.

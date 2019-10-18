@@ -1,5 +1,6 @@
 from misc.RegData import RegData
 from misc import static
+from Assemble.Preprocessor import Preprocessor
 
 
 class Assembler:
@@ -10,9 +11,10 @@ class Assembler:
     def encode(instrcutions):
         """
 
-        :param instrcutions: list
+        :param instrcutions: string
         :return:
         """
+        instrcutions = Preprocessor.prep(instrcutions,return_label=False)
         machine_code = RegData(None)
         for inst in instrcutions:
             inst = list(
@@ -42,7 +44,6 @@ class Assembler:
         :return: RegData
         """
         try:
-            # TODO: if op/rs not in keys(),throw error
             if len(instruction_list) == 4:
                 op = RegData("0b000000")
                 rs = static.reg_to_index[instruction_list[2]]

@@ -63,5 +63,4 @@ def srl_(rt, rs, imme):
     res = Registers.reg_get(rs) >> int(imme)
     Registers.reg_set(rt, res)
 
-
 # TODO: many more instructions
