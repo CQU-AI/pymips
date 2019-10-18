@@ -13,8 +13,10 @@ from Assemble.Preprocessor import Preprocessor
 from Assemble.Assembler import Assembler
 from misc.RegData import RegData
 
+
 class Interpreter:
-    Inst = {"lw": lw, "sw": sw, "add": add, "sub": sub}
+    Inst = {"lw": lw_, "sw": sw_, "add": add_, "addi": addi_, "and": and_, "beq": beq_, "j": j_, "or": or_, "sub": sub_,
+            "sll": sll_, "slt": slt_, "slti": slti_, "srl": srl_}
     __label = {}
     __hist_inst = []
     __curr_inst = 0
@@ -61,14 +63,22 @@ class Interpreter:
 
 
 if __name__ == '__main__':
-    Registers.reg_set("$s1",RegData("123"))
-    Registers.reg_set("$s4", RegData("234"))
+    # Registers.reg_set("$s1",RegData("123"))
+    # Registers.reg_set("$s4", RegData("234"))
+    #
+    # Interpreter.run_line("sw $s1,8($s2)")
+    Interpreter.run_line("slti $s3, $s2, 1")
 
-    Interpreter.run_line("sw $s1,8($s2)")
-    Interpreter.run_line("lw $s3,8($s2)")
+    print(Registers.reg_get("$s3"), "haha")
 
-    print(Registers.reg_get("$s3"))
+    Interpreter.run_line("slti $s3, $s2, 0")
 
-    Interpreter.run_line("add $s2,$s1,$s4")
+    print(Registers.reg_get("$s3"), "xixi")
 
-    print(Registers.reg_get("$s2"))
+    # Interpreter.run_line("slti $s3, $s2, -1")
+    #
+    # print(Registers.reg_get("$s3"))
+
+    # Interpreter.run_line("add $s2,$s1,$s4")
+    #
+    # print(Registers.reg_get("$s2"))

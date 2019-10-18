@@ -276,6 +276,12 @@ class RegData:
             elif value[:2] == "0o":
                 self.bin_length = (len(value) - 2) * 2
                 self._value = int(value[2:], 8)
+            elif value == "True":
+                self.bin_length = 32
+                self._value = 1
+            elif value == "False":
+                self.bin_length = 32
+                self._value = 0
             else:
                 self.bin_length = (len(bin(int(value))) - 2) * 2
                 self._value = int(value)
