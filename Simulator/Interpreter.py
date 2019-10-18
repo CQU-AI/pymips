@@ -15,8 +15,21 @@ from misc.RegData import RegData
 
 
 class Interpreter:
-    Inst = {"lw": lw_, "sw": sw_, "add": add_, "addi": addi_, "and": and_, "beq": beq_, "j": j_, "or": or_, "sub": sub_,
-            "sll": sll_, "slt": slt_, "slti": slti_, "srl": srl_}
+    Inst = {
+        "lw": lw_,
+        "sw": sw_,
+        "add": add_,
+        "addi": addi_,
+        "and": and_,
+        "beq": beq_,
+        "j": j_,
+        "or": or_,
+        "sub": sub_,
+        "sll": sll_,
+        "slt": slt_,
+        "slti": slti_,
+        "srl": srl_,
+    }
     __label = {}
     __hist_inst = []
     __curr_inst = 0
@@ -58,11 +71,18 @@ class Interpreter:
     def jump_label(cls, label):
         if label in cls.__label.keys():
             cls.__curr_inst = cls.__hist_inst[cls.__label[label]]
+            count = 0
+            while cls.__curr_inst < len(cls.__hist_inst):
+                if count > 10000:
+                    raise RecursionError("Infinity Loop with label:{}".format(label))
+                cls.run_line(cls.__hist_inst[cls.__curr_inst])
+                cls.__hist_inst += 1
+                count += 1
         else:
             raise ValueError("Trying to jump to an unknown label:{}".format(label))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Registers.reg_set("$s1",RegData("123"))
     # Registers.reg_set("$s4", RegData("234"))
     #
