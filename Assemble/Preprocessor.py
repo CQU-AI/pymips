@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : Preprocessor.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/17/19 7:58 PM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 import re
 
 
@@ -17,12 +7,11 @@ class Preprocessor:
 
     @staticmethod
     def prep(mips_code, return_label=True):
-
         mips_code = re.sub("#.+?\n", "\n", mips_code)  # remove annotation
         mips_code = re.sub("\n+", "\n", mips_code)  # remove empty line
         mips_code = re.sub(" +", " ", mips_code)  # remove redundant space
         mips_code = re.sub("\n | \n", "\n", mips_code)  # remove space at line_start_end
-        mips_code = re.sub("\$zero", "$0", mips_code)  # remove space at line_start_end
+        mips_code = re.sub("\$zero", "$0", mips_code)
 
         inst_list = mips_code.split("\n")
 
@@ -52,15 +41,18 @@ class Preprocessor:
     @staticmethod
     def prep_line(mips_line):
         if ":" not in mips_line:
-            return list(
-                filter(
-                    lambda x: x != "",
-                    mips_line.replace(",", " ")
+            return (
+                list(
+                    filter(
+                        lambda x: x != "",
+                        mips_line.replace(",", " ")
                         .replace("(", " ")
                         .replace(")", "")
                         .split(" "),
-                )
-            ), None
+                    )
+                ),
+                None,
+            )
         else:
             this_line = mips_line.split(":")
             if len(this_line) > 1:
@@ -68,10 +60,11 @@ class Preprocessor:
                     list(
                         filter(
                             lambda x: x != "",
-                            this_line[1].replace(",", " ")
-                                .replace("(", " ")
-                                .replace(")", "")
-                                .split(" "),
+                            this_line[1]
+                            .replace(",", " ")
+                            .replace("(", " ")
+                            .replace(")", "")
+                            .split(" "),
                         )
                     ),
                     this_line[0],
@@ -80,6 +73,6 @@ class Preprocessor:
                 return None, this_line[0]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     with open("../drings.txt", "r") as f:
         print(Preprocessor.prep(f.read()))

@@ -4,7 +4,7 @@ from Simulate.Interpreter import Interpreter
 
 class Simulator(Interpreter):
     def __init__(self):
-        raise SyntaxError("Simulate can not be instantiate. Please use static method.")
+        raise SyntaxError("Simulator can not be instantiate. Please use static method.")
 
     @classmethod
     def run_file(cls, path):
@@ -14,5 +14,6 @@ class Simulator(Interpreter):
         while cls.curr_inst <= len(cls.hist_inst):
             cls.run_line(cls.hist_inst[cls.curr_inst])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     Simulator.run_file("../drings.txt")

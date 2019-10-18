@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : instructions.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/17/19 6:48 PM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 from Hardware.Memory import Memory
 from Hardware.Registers import Registers
 from misc.RegData import RegData
@@ -72,4 +62,6 @@ def slti_(rt, rs, imme):
 def srl_(rt, rs, imme):
     res = Registers.reg_get(rs) >> int(imme)
     Registers.reg_set(rt, res)
+
+
 # TODO: many more instructions

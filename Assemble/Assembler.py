@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : Assemble.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/16/19 8:14 PM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 from misc.RegData import RegData
 from misc import static
 
@@ -15,6 +5,7 @@ from misc import static
 class Assembler:
     def __init__(self):
         raise SyntaxError("Assembler can not instance, please use static method")
+
     @staticmethod
     def encode(instrcutions):
         """

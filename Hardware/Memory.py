@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : Memory.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/17/19 6:41 PM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 from misc.RegData import RegData
 
 

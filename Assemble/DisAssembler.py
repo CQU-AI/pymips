@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : DisAssembler.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/17/19 10:55 AM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 from misc.RegData import RegData
 from misc import static
 

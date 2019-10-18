@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : Interpreter.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/17/19 8:41 PM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 from Simulate.instructions import *
 from Assemble.Preprocessor import Preprocessor
 from Assemble.Assembler import Assembler
@@ -35,7 +25,9 @@ class Interpreter:
     curr_inst = 0
 
     def __init__(self):
-        raise SyntaxError("Interpreter can not be instantiate. Please use static method.")
+        raise SyntaxError(
+            "Interpreter can not be instantiate. Please use static method."
+        )
 
     @classmethod
     def clear(cls):

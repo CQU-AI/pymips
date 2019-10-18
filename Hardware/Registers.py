@@ -1,13 +1,3 @@
-# python3
-# -*- coding: utf-8 -*-
-# @File    : Registers.py
-# @Desc    :
-# @Project : MIPSAssembler
-# @Time    : 10/17/19 6:47 PM
-# @Author  : Loopy
-# @Contact : peter@mail.loopy.tech
-# @License : CC BY-NC-SA 4.0 (subject to project license)
-
 from misc.RegData import RegData
 
 
@@ -15,6 +5,7 @@ class Registers:
     """
     Registers in singleton mode
     """
+
     __data = {
         "$0": RegData("0", 32),  # 0
         "$at": RegData("0", 32),  # 由编译器生成的复合指令使用
