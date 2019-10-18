@@ -66,7 +66,7 @@ print(instructions)
    Registers.print()
     ```
 ### Example
- - [Sample1.py](./test/sample1.py)
+ - [Sample1.py](./test/sample1/sample1.py)
  
 ## Contributing
 
