@@ -22,7 +22,7 @@ class Interpreter:
     __curr_inst = 0
 
     def __init__(self):
-        raise SyntaxError("Interpreter can not instance, please use static method")
+        raise SyntaxError("Interpreter can not be instantiate. Please use static method.")
 
     @classmethod
     def clear(cls):
@@ -40,7 +40,7 @@ class Interpreter:
         elif code_list is not None:
             if code_list[0] not in cls.Inst:
                 raise ModuleNotFoundError(
-                    'Instruction "{}" is not currently supported.'.format(code_list[0])
+                    'Unknown instruction "{}".'.format(code_list[0])
                 )
             res = cls.Inst[code_list[0]](*code_list[1:])
             if res is not None:
