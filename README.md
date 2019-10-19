@@ -18,7 +18,7 @@ In other words, MIPS-simulator actually interprets mips instructions.
 ### Assemble
 #### Assemble
 ```python
-from Fengyong import Assembler
+from fengyong import Assembler
 
 instructions = "j 10000\nadd $s0,$a1,$t7\nsw $s1,10($s2)"
 machine_code = Assembler.encode(instructions)
@@ -27,8 +27,8 @@ print(machine_code.value_base(16))
 ```
 #### DisAssemble
 ```python
-from Fengyong import DisAssembler
-from Fengyong import  RegData
+from fengyong import DisAssembler
+from fengyong import  RegData
 
 machine_code = RegData("0x8002710af820ae51000a")
 instructions = DisAssembler.decode(machine_code)
@@ -38,27 +38,27 @@ print(instructions)
 #### RUN!
  - Run mips instruction in line:
     ```python
-   from Fengyong import Simulator
+   from fengyong import Simulator
    
    Simulator.run_line("addi $s0, $s1, 10")
     ```
  - Run asm file:
     ```python
-   from Fengyong import Simulator
+   from fengyong import Simulator
    
    Simulator.run_file("../test/drings.asm")
     ```
 #### Debug
  - Set the register data
     ```python
-   from Fengyong import Registers
-   from Fengyong import RegData
+   from fengyong import Registers
+   from fengyong import RegData
    
    Registers.reg_set("$s0",RegData(100))
    ```
  - Get the register data
     ```python
-   from Fengyong import Registers
+   from fengyong import Registers
     
    res = Registers.reg_get("$s0")
    

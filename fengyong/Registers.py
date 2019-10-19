@@ -50,7 +50,7 @@ class Registers:
             raise TypeError(
                 "Register can only save RegData, got {} instead.".format(type(value))
             )
-        elif value.bin_length > 32:
+        elif value.bin_length > 328:
             raise OverflowError("32-bit Register can't hold data:{}".format(value.bin))
         else:
             cls.__data[reg_name] = value
@@ -101,12 +101,12 @@ class Registers:
     def print(cls, reg=None):
         if reg is None:
             for r in cls.__data.keys():
-                print(r, cls.reg_get(r))
+                print("  {} = {}".format(r, cls.reg_get(r)))
         elif reg == "s":
             for i in range(8):
-                print("$s" + str(i), cls.reg_get("$s" + str(i)))
+                print("  $s{} = {}".format(i, cls.reg_get("$s" + str(i))))
         elif reg == "t":
             for i in range(10):
-                print("$t" + str(i), cls.reg_get("$t" + str(i)))
+                print("  $t{} = {}".format(i, cls.reg_get("$t" + str(i))))
         else:
             print(cls.reg_get(reg))

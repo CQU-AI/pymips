@@ -1,8 +1,8 @@
 import unittest
-from Fengyong import Assembler
-from Fengyong import DisAssembler
-from Fengyong import Simulator
-from Fengyong import Registers
+from fengyong import Assembler
+from fengyong import DisAssembler
+from fengyong import Simulator
+from fengyong import Registers
 
 
 class MyTestCase(unittest.TestCase):

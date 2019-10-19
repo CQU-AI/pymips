@@ -12,8 +12,8 @@
 
 ################################################################
 # import
-from Fengyong import Simulator
-from Fengyong import Registers
+from fengyong import Simulator
+from fengyong import Registers
 
 path = "./sample1.asm"
 
