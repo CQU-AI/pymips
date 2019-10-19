@@ -1,6 +1,6 @@
-from ..misc.RegData import RegData
-from ..misc import static
-from ..Assemble.Preprocessor import Preprocessor
+from .RegData import RegData
+from .static import *
+from .Preprocessor import Preprocessor
 
 
 class Assembler:
@@ -26,11 +26,11 @@ class Assembler:
                     .split(" "),
                 )
             )
-            if inst[0] in static.R_inst_to_index.keys():
+            if inst[0] in R_inst_to_index.keys():
                 machine_code = machine_code.concat(Assembler.r_encode(inst))
-            elif inst[0] in static.I_inst_to_index.keys():
+            elif inst[0] in I_inst_to_index.keys():
                 machine_code = machine_code.concat(Assembler.i_encode(inst))
-            elif inst[0] in static.J_inst_to_index.keys():
+            elif inst[0] in J_inst_to_index.keys():
                 machine_code = machine_code.concat(Assembler.j_encode(inst))
             else:
                 raise ValueError("Unknown mips instruction:{}".format(inst[0]))
@@ -46,20 +46,20 @@ class Assembler:
         try:
             if len(instruction_list) == 4:
                 op = RegData("0b000000")
-                rs = static.reg_to_index[instruction_list[2]]
-                rt = static.reg_to_index[instruction_list[3]]
-                rd = static.reg_to_index[instruction_list[1]]
+                rs = reg_to_index[instruction_list[2]]
+                rt = reg_to_index[instruction_list[3]]
+                rd = reg_to_index[instruction_list[1]]
                 shamt = RegData("0b00000")
-                funct = static.R_inst_to_index[instruction_list[0]]
+                funct = R_inst_to_index[instruction_list[0]]
 
                 return RegData.concat_list([op, rs, rt, rd, shamt, funct])
             else:
                 op = RegData("0b000000")
-                rs = static.reg_to_index[instruction_list[1]]
+                rs = reg_to_index[instruction_list[1]]
                 rt = RegData("0b00000")
                 rd = RegData("0b00000")
                 shamt = RegData("0b00000")
-                funct = static.R_inst_to_index[instruction_list[0]]
+                funct = R_inst_to_index[instruction_list[0]]
 
                 return RegData.concat_list([op, rs, rt, rd, shamt, funct])
         except Exception as e:
@@ -78,16 +78,16 @@ class Assembler:
         try:
             # TODO: jump to inst unsupported
             if instruction_list[-1][0] == "$":
-                op = static.I_inst_to_index[instruction_list[0]]
-                rs = static.reg_to_index[instruction_list[3]]
-                rt = static.reg_to_index[instruction_list[1]]
+                op = I_inst_to_index[instruction_list[0]]
+                rs = reg_to_index[instruction_list[3]]
+                rt = reg_to_index[instruction_list[1]]
                 add = RegData(instruction_list[2], 16)
 
                 return RegData.concat_list([op, rs, rt, add])
             else:
-                op = static.I_inst_to_index[instruction_list[0]]
-                rs = static.reg_to_index[instruction_list[2]]
-                rt = static.reg_to_index[instruction_list[1]]
+                op = I_inst_to_index[instruction_list[0]]
+                rs = reg_to_index[instruction_list[2]]
+                rt = reg_to_index[instruction_list[1]]
                 add = RegData(instruction_list[3], 16)
 
                 return RegData.concat_list([op, rs, rt, add])
@@ -105,7 +105,7 @@ class Assembler:
         """
         # TODO: jump to label unsupported
         try:
-            op = static.J_inst_to_index[instruction_list[0]]
+            op = J_inst_to_index[instruction_list[0]]
             address = RegData(instruction_list[1], 26)
             return RegData.concat_list([op, address])
 

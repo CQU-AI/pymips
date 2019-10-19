@@ -218,9 +218,9 @@ class RegData:
         if base == 2:
             return "0b" + bin(self._value)[2:].zfill(self.bin_length)
         elif base == 8:
-            res = "0o" + oct(self._value)[2:].zfill(math.ceil(self.bin_length // 3))
+            res = "0o" + oct(self._value)[2:].zfill(ceil(self.bin_length // 3))
         elif base == 16:
-            res = "0x" + hex(self._value)[2:].zfill(math.ceil(self.bin_length // 4))
+            res = "0x" + hex(self._value)[2:].zfill(ceil(self.bin_length // 4))
         elif base == 10:
             return self._value
         else:

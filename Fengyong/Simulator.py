@@ -1,7 +1,7 @@
-from ..Assemble.Preprocessor import Preprocessor
-from ..Simulate.Interpreter import Interpreter
-from ..Hardware.Memory import Memory
-from ..Hardware.Registers import Registers
+from .Preprocessor import Preprocessor
+from .Interpreter import Interpreter
+from .Memory import Memory
+from .Registers import Registers
 
 
 class Simulator(Interpreter):

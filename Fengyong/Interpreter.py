@@ -1,6 +1,6 @@
-from ..Simulate.instructions import *
-from ..Assemble.Preprocessor import Preprocessor
-from ..misc.RegData import RegData
+from .instructions import *
+from .Preprocessor import Preprocessor
+from .RegData import RegData
 
 
 class Interpreter:

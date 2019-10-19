@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='fengyong',
-    version='1.1.0',
+    version='1.1.2',
     description=(
         'Run MIPS with python!'
     ),

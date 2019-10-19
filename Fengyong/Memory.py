@@ -1,4 +1,4 @@
-from ..misc.RegData import RegData
+from .RegData import RegData
 
 
 class Memory:

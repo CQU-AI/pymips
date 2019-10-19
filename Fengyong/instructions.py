@@ -1,6 +1,6 @@
-from ..Hardware.Memory import Memory
-from ..Hardware.Registers import Registers
-from ..misc.RegData import RegData
+from .Memory import Memory
+from .Registers import Registers
+from .RegData import RegData
 
 
 def lw_(rt, add, rs):
