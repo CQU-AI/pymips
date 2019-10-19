@@ -1,5 +1,5 @@
-from misc.RegData import RegData
-from misc import static
+from ..misc.RegData import RegData
+from ..misc import static
 
 
 class DisAssembler:
@@ -21,7 +21,7 @@ class DisAssembler:
             elif RegData("0b" + code.bin[:6]).hash in static.J_index_to_inst.keys():
                 instructions += DisAssembler.j_decode(code) + "\n"
             else:
-                raise ValueError("Unknown machiche code:{}".format(code.bin))
+                raise ValueError("Unknown machiche code:{}".format(code.bin[:6]))
         return instructions
 
     @staticmethod

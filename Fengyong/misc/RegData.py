@@ -1,4 +1,4 @@
-import math
+from math import ceil
 
 
 class RegData:
@@ -75,11 +75,11 @@ class RegData:
         return RegData(self.value << n, self.bin_length)
 
     def __hash__(self):
-        return self.value.__hash__()
+        return self._value.__hash__()
 
     @property
     def hash(self):
-        return self.value.__hash__()
+        return self.__hash__()
 
     def split(self, split_index):
         """
@@ -161,10 +161,25 @@ class RegData:
             try:
                 if value[:2] == "0x":
                     self._value = int(value[2:], 16)
+                    self.bin_length = (
+                        ceil((len(value) - 2) * 4)
+                        if self.bin_length == -1
+                        else self.bin_length
+                    )
                 elif value[:2] == "0b":
                     self._value = int(value[2:], 2)
+                    self.bin_length = (
+                        ceil((len(value) - 2) * 1)
+                        if self.bin_length == -1
+                        else self.bin_length
+                    )
                 elif value[:2] == "0o":
                     self._value = int(value[2:], 8)
+                    self.bin_length = (
+                        ceil((len(value) - 2) * 3)
+                        if self.bin_length == -1
+                        else self.bin_length
+                    )
                 else:
                     self._value = int(value)
                 self.check_overflow()

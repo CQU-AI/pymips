@@ -1,6 +1,6 @@
-from misc.RegData import RegData
-from misc import static
-from Assemble.Preprocessor import Preprocessor
+from ..misc.RegData import RegData
+from ..misc import static
+from ..Assemble.Preprocessor import Preprocessor
 
 
 class Assembler:
@@ -14,7 +14,7 @@ class Assembler:
         :param instrcutions: string
         :return:
         """
-        instrcutions = Preprocessor.prep(instrcutions,return_label=False)
+        instrcutions = Preprocessor.prep(instrcutions, return_label=False)
         machine_code = RegData(None)
         for inst in instrcutions:
             inst = list(

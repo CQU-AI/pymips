@@ -1,3 +1,7 @@
 .idea
 venv/
 __pycache__/
+dist/
+build/
+fengyong.egg-info/
+readme.rst

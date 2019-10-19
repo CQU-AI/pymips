@@ -1,4 +1,4 @@
-from misc.RegData import RegData
+from ..misc.RegData import RegData
 
 
 class Registers:

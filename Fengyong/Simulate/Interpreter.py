@@ -1,7 +1,6 @@
-from Simulate.instructions import *
-from Assemble.Preprocessor import Preprocessor
-from Assemble.Assembler import Assembler
-from misc.RegData import RegData
+from ..Simulate.instructions import *
+from ..Assemble.Preprocessor import Preprocessor
+from ..misc.RegData import RegData
 
 
 class Interpreter:

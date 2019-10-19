@@ -1,4 +1,4 @@
-from misc.RegData import RegData
+from ..misc.RegData import RegData
 
 
 def reverse_dict(d):
@@ -41,32 +41,32 @@ index_to_reg = {
 reg_to_index = reverse_dict(index_to_reg)
 
 R_index_to_inst = {
-    RegData("0b100000"): "add",
-    RegData("0b100010"): "sub",
-    RegData("0b100100"): "and",
-    RegData("0b100101"): "or",
-    RegData("0b100111"): "nor",
-    RegData("0b101010"): "slt",
-    RegData("0b101011"): "sltu",
-    RegData("0b000000"): "sll",
-    RegData("0b000010"): "srl",
-    RegData("0b001000"): "jr",
+    RegData("0b100000", 6): "add",
+    RegData("0b100010", 6): "sub",
+    RegData("0b100100", 6): "and",
+    RegData("0b100101", 6): "or",
+    RegData("0b100111", 6): "nor",
+    RegData("0b101010", 6): "slt",
+    RegData("0b101011", 6): "sltu",
+    RegData("0b000000", 6): "sll",
+    RegData("0b000010", 6): "srl",
+    RegData("0b001000", 6): "jr",
 }
 
 R_inst_to_index = reverse_dict(R_index_to_inst)
 
 I_index_to_inst = {
-    RegData("0b001000"): "addi",
-    RegData("0b100011"): "lw",
-    RegData("0b101011"): "sw",
-    RegData("0b000100"): "beq",
-    RegData("0b000101"): "bne",
-    RegData("0b001010"): "slti",
-    RegData("0b001011"): "sltiu",
+    RegData("0b001000", 6): "addi",
+    RegData("0b100011", 6): "lw",
+    RegData("0b101011", 6): "sw",
+    RegData("0b000100", 6): "beq",
+    RegData("0b000101", 6): "bne",
+    RegData("0b001010", 6): "slti",
+    RegData("0b001011", 6): "sltiu",
 }
 
 I_inst_to_index = reverse_dict(I_index_to_inst)
 
-J_index_to_inst = {RegData("0b000010"): "j", RegData("0b000011"): "jal"}
+J_index_to_inst = {RegData("0b000010", 6): "j", RegData("0b000011", 6): "jal"}
 
 J_inst_to_index = reverse_dict(J_index_to_inst)

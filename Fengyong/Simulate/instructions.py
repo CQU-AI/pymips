@@ -1,6 +1,6 @@
-from Hardware.Memory import Memory
-from Hardware.Registers import Registers
-from misc.RegData import RegData
+from ..Hardware.Memory import Memory
+from ..Hardware.Registers import Registers
+from ..misc.RegData import RegData
 
 
 def lw_(rt, add, rs):
@@ -62,5 +62,6 @@ def slti_(rt, rs, imme):
 def srl_(rt, rs, imme):
     res = Registers.reg_get(rs) >> int(imme)
     Registers.reg_set(rt, res)
+
 
 # TODO: many more instructions
