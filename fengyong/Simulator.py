@@ -21,9 +21,9 @@ class Simulator(Interpreter):
         "%a": lambda: Registers.print("a"),
         "%q": exit,
         "%about": lambda: print("""
-        ______                                       
-        |  ___|                                      
-        | |_ ___ _ __   __ _ _   _  ___  _ __   __ _ 
+        ______
+        |  ___|
+        | |_ ___ _ __   __ _ _   _  ___  _ __   __ _
         |  _/ _ \ '_ \ / _` | | | |/ _ \| '_ \ / _` |
         | ||  __/ | | | (_| | |_| | (_) | | | | (_| |
         \_| \___|_| |_|\__, |\__, |\___/|_| |_|\__, |
@@ -47,7 +47,8 @@ class Simulator(Interpreter):
 
     @classmethod
     def run_shell(cls):
-        print("Fengyong mips shell")
+        print("\nFengyong mips shell (1.2.0, Oct 19 2019)")
+        print("[Powered by CQU-AI, LoopyTech]")
         print('Type "%help" for more information.')
         while True:
             inst = input(">>> ")

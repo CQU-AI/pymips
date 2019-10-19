@@ -28,4 +28,9 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries'
     ],
+    entry_points={
+        'console_scripts': [
+            'mips-shell=fengyong:Simulator.run_shell',
+        ]
+    }
 )
