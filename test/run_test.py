@@ -3,6 +3,7 @@ from fengyong import Assembler
 from fengyong import DisAssembler
 from fengyong import Simulator
 from fengyong import Registers
+from fengyong import Stack
 import random
 
 
@@ -21,6 +22,16 @@ class MyTestCase(unittest.TestCase):
         Simulator.run_file(path)
         self.assertEqual(468968, Registers.reg_get("$s0"))
 
+        
+    def test_stack(self):
+        Registers.clear()
+        path = "./test/asm/stack.asm"
+        Simulator.run_file(path)
+        self.assertEqual(3, Registers.reg_get("$t4"))
+        self.assertEqual(2, Registers.reg_get("$t5"))
+        self.assertEqual(1, Registers.reg_get("$t6"))
+        
+        
     def test_instructions1(self):
         instructions1 = {
             "add": lambda x, y: x + y,
