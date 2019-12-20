@@ -17,8 +17,11 @@ instructions.
 Note
 ----
 
--  This project is in its early stage, which means some functions may
-   not supported yet.
+-  This project is a **toy**, which means some functions are not supported. 
+-  If you just need an IDE for MIPS Programming, I personally recommend MARS_
+   by Softpedia Lab, Missouri State University.
+-  If you also want to play with this toy, feel free to do want ever you want
+   but don't forget about the CI tests. 
 
 Install
 -------
@@ -57,7 +60,7 @@ DisAssemble
 .. code:: python
 
     from fengyong import DisAssembler
-    from fengyong import  RegData
+    from fengyong import RegData
 
     machine_code = RegData("0x8002710af820ae51000a")
     instructions = DisAssembler.decode(machine_code)
@@ -109,6 +112,8 @@ Contributing
 Read
 `CONTRIBUTING <https://github.com/CQU-AI/pymips/blob/master/CONTRIBUTING.md>`__
 for more information.
+
+.. _MARS: https://courses.missouristate.edu/KenVollmar/MARS/
 
 .. |Code quality| image:: https://api.codacy.com/project/badge/Grade/27c6f1dcec1d410384eb5cbdb46245df
 .. _Code quality: https://app.codacy.com/gh/CQU-AI/pymips
